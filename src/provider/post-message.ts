@@ -33,7 +33,7 @@ export class SchedulePostMessageHelper extends ScheduleHelper {
     globalThis.postMessage(this.id);
   }
 
-  protected resumeTick(): void {
+  protected nextTick(): void {
     globalThis.postMessage(this.id);
   }
 

@@ -2,9 +2,9 @@
   "name": "non-blocking-schedule",
   "version": "0.1.0",
   "description": "Useful for non blocking scheduling of tasks. Good alternative to setTimeout(cb, 0)",
-  "main": "./build/index.js",
-  "module": "./build/index.mjs",
-  "typings": "./build/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "prepublishOnly": "npm run build",
     "lint": "eslint ./src/**/*.ts",
@@ -13,7 +13,8 @@
     "build": "npm run build:node && npm run build:esm && npm run build:ts",
     "build:ts": "npx tsc",
     "build:node": "npx esbuild --bundle --outdir=dist --platform=node --format=cjs --minify-syntax --minify-whitespace src/index.ts",
-    "build:esm": "npx esbuild --bundle --out-extension:.js=.mjs --outdir=dist --platform=node --format=esm --minify-syntax --minify-whitespace src/index.ts"
+    "build:esm": "npx esbuild --bundle --out-extension:.js=.mjs --outdir=dist --platform=node --format=esm --minify-syntax --minify-whitespace src/index.ts",
+    "build:benchmark-cases": "npx esbuild --bundle --outdir=. --platform=browser --format=iife --minify-syntax --minify-whitespace --global-name=benchmark benchmark-cases.ts"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/ayecue/non-blocking-schedule#readme",
   "devDependencies": {
+    "@types/asap": "^2.0.2",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
@@ -44,6 +46,7 @@
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "jest": "^29.7.0",
+    "setimmediate": "^1.0.5",
     "ts-jest": "^29.2.3",
     "typescript": "^5.5.3"
   }

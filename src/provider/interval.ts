@@ -22,7 +22,7 @@ export class ScheduleIntervalHelper extends ScheduleHelper {
     this.timer = setInterval(this.boundTick, 0);
   }
 
-  protected resumeTick(): void {}
+  protected nextTick(): void {}
 
   protected endTick(): void {
     clearInterval(this.timer);

@@ -22,7 +22,7 @@ export class ScheduleSetImmmediateHelper extends ScheduleHelper {
     this.immediate = setImmediate(this.boundTick);
   }
 
-  protected resumeTick(): void {
+  protected nextTick(): void {
     this.immediate = setImmediate(this.boundTick);
   }
 

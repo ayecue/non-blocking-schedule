@@ -1,8 +1,8 @@
-import { next } from '../next';
+import { run } from '../run';
 import { Callback } from '../types';
 
 export abstract class ScheduleHelper {
-  static SLEEP_LIMIT = 1000 as const;
+  static SLEEP_LIMIT = 512 as const;
   static QUEUE_LIMIT = 1024 as const;
 
   static isApplicable() {
@@ -18,17 +18,17 @@ export abstract class ScheduleHelper {
 
   protected abstract isTickActive(): boolean;
   protected abstract startTick(): void;
-  protected abstract resumeTick(): void;
+  protected abstract nextTick(): void;
   protected abstract endTick(): void;
 
   protected tick() {
     const q = this.queue;
     const m = Math.min(q.length, ScheduleHelper.QUEUE_LIMIT);
     this.queue = this.queue.slice(ScheduleHelper.QUEUE_LIMIT);
-    for (let i = 0; i < m; i++) next(q[i]);
+    for (let i = 0; i < m; run(q[i++]));
     if (this.queue.length > 0) this.sleep = 0;
     if (this.sleep++ <= ScheduleHelper.SLEEP_LIMIT) {
-      this.resumeTick();
+      this.nextTick();
       return;
     }
     this.endTick();

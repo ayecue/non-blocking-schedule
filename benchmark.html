@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<button id="testbutton">test responsiveness</button>
+<button id="testsettimeout">test setTimeout</button>
+<button id="testsetimmediate">test setImmediate</button>
+<button id="testnonblockingschedule">test nonBlockingSchedule</button>
+<script src="./benchmark-cases.js"></script>
+<script>
+  document.getElementById('testbutton').addEventListener('click', () => {
+    console.log('click');
+  });
+
+  document.getElementById('testsettimeout').addEventListener('click', benchmark.runSetTimeout);
+  document.getElementById('testsetimmediate').addEventListener('click', benchmark.runSetImmediate);
+  document.getElementById('testnonblockingschedule').addEventListener('click', benchmark.runNonBlockingSchedule);
+</script>
+
+</html>

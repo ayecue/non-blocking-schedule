@@ -3,3 +3,7 @@ node_modules
 tsconfig.json
 .circleci
 tests
+.eslintrc
+jest.config.js
+/test.ts
+/benchmark-cases.js

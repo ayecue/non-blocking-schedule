@@ -1,0 +1,1 @@
+export const run = Promise.prototype.then.bind(Promise.resolve());
