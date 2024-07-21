@@ -1,5 +1,7 @@
 # non-blocking-schedule
 
+[![non-blocking-schedule](https://circleci.com/gh/ayecue/non-blocking-schedule.svg?style=svg)](https://circleci.com/gh/ayecue/non-blocking-schedule)
+
 The non-blocking-schedule library is a robust utility designed to facilitate non-blocking task scheduling, ensuring efficient execution of queued tasks without hindering the performance of other operations. This library is particularly useful for applications that require precise control over task execution timing and concurrency.
 
 ## Installation
@@ -33,3 +35,18 @@ processInChunks(exampleOps);
 
 ## Performance
 
+Results from `benchmark.ts`.
+
+```
+Chrome:
+setTimeout - Avg 5321.423
+setImmediate (polyfill) - Avg 9798.79
+non-blocking-schedule - Avg 3726.29
+```
+
+```
+NodeJS:
+setTimeout - Avg 8170.55
+setImmediate - Avg 7749.52
+non-blocking-schedule - Avg 6791.65
+```

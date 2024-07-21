@@ -45,7 +45,7 @@ const testCasePromisifiedMulti = async (label: string, size: number, schedule: (
 
   console.log('start with', label);
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 100; i++) {
     promises.push(testCasePromisified(label + i, size, schedule));
   }
 
