@@ -6,5 +6,4 @@ tests
 .eslintrc
 jest.config.js
 /test.ts
-/benchmark-cases.js
-/benchmark.js
+/benchmark*
