@@ -1,7 +1,7 @@
 import { Callback } from '../types';
-import { ScheduleHelper } from './default';
+import { ScheduleHelperCore } from './core';
 
-export class ScheduleIntervalHelper extends ScheduleHelper {
+export class ScheduleIntervalHelper extends ScheduleHelperCore {
   static isApplicable() {
     return !!globalThis.setInterval;
   }
@@ -22,7 +22,7 @@ export class ScheduleIntervalHelper extends ScheduleHelper {
     this.timer = setInterval(this.boundTick, 0);
   }
 
-  protected nextTick(): void {}
+  protected nextTick(): void { }
 
   protected endTick(): void {
     clearInterval(this.timer);

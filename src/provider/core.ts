@@ -1,7 +1,7 @@
 import { run } from '../run';
 import { Callback } from '../types';
 
-export abstract class ScheduleHelper {
+export abstract class ScheduleHelperCore {
   static SLEEP_LIMIT = 512 as const;
   static QUEUE_LIMIT = 1024 as const;
 
@@ -23,12 +23,12 @@ export abstract class ScheduleHelper {
 
   protected tick() {
     const q = this.queue;
-    const m = Math.min(q.length, ScheduleHelper.QUEUE_LIMIT);
-    this.queue = this.queue.slice(ScheduleHelper.QUEUE_LIMIT);
+    const m = Math.min(q.length, ScheduleHelperCore.QUEUE_LIMIT);
+    this.queue = this.queue.slice(ScheduleHelperCore.QUEUE_LIMIT);
     for (let i = 0; i < m; run(q[i++]));
     if (this.queue.length > 0) this.sleep = 0;
-    if (this.sleep++ <= ScheduleHelper.SLEEP_LIMIT) {
-      this.nextTick();
+    if (this.sleep++ <= ScheduleHelperCore.SLEEP_LIMIT) {
+      this.nextTick(); ScheduleHelperCore
       return;
     }
     this.endTick();

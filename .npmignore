@@ -7,3 +7,4 @@ tests
 jest.config.js
 /test.ts
 /benchmark-cases.js
+/benchmark.js

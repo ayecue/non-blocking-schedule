@@ -14,7 +14,8 @@
     "build:ts": "npx tsc",
     "build:node": "npx esbuild --bundle --outdir=dist --platform=node --format=cjs --minify-syntax --minify-whitespace src/index.ts",
     "build:esm": "npx esbuild --bundle --out-extension:.js=.mjs --outdir=dist --platform=node --format=esm --minify-syntax --minify-whitespace src/index.ts",
-    "build:benchmark-cases": "npx esbuild --bundle --outdir=. --platform=browser --format=iife --minify-syntax --minify-whitespace --global-name=benchmark benchmark-cases.ts"
+    "build:benchmark-cases": "npx esbuild --bundle --outdir=. --platform=browser --format=iife --global-name=benchmark benchmark-cases.ts",
+    "build:benchmark": "npx esbuild --bundle --outdir=. --platform=node --format=cjs --global-name=benchmark benchmark.ts"
   },
   "repository": {
     "type": "git",

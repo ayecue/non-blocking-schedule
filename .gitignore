@@ -132,3 +132,4 @@ dist
 # custom
 /test.ts
 /benchmark-cases.js
+/benchmark.js

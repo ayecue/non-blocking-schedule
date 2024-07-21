@@ -1,7 +1,7 @@
 import { Callback } from '../types';
-import { ScheduleHelper } from './default';
+import { ScheduleHelperCore } from './core';
 
-export class ScheduleSetImmmediateHelper extends ScheduleHelper {
+export class ScheduleSetImmmediateHelper extends ScheduleHelperCore {
   static isApplicable() {
     return !!globalThis.setImmediate;
   }

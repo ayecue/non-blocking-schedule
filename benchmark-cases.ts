@@ -11,6 +11,7 @@ const testCase = (label: string, size: number, schedule: (cb: () => void) => voi
     const remaining = ops.slice(MAX_OPS);
     if (remaining.length === 0) {
       done({
+        label,
         items,
         time: Date.now() - start
       });
@@ -33,7 +34,7 @@ const testCase = (label: string, size: number, schedule: (cb: () => void) => voi
   processInChunks(exampleOps);
 };
 
-const testCasePromisified = (label: string, size: number, schedule: (cb: () => void) => void): Promise<{ items: number[], time: number }> => {
+const testCasePromisified = (label: string, size: number, schedule: (cb: () => void) => void): Promise<{ label: string, items: number[], time: number }> => {
   return new Promise((resolve) => {
     testCase(label, size, schedule, resolve);
   });
@@ -44,7 +45,7 @@ const testCasePromisifiedMulti = async (label: string, size: number, schedule: (
 
   console.log('start with', label);
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 1000; i++) {
     promises.push(testCasePromisified(label + i, size, schedule));
   }
 
@@ -55,6 +56,6 @@ const testCasePromisifiedMulti = async (label: string, size: number, schedule: (
   console.log('Avg', sum / results.length);
 }
 
-export const runSetImmediate = () => testCasePromisifiedMulti('setImmediate', 25000, setImmediate);
-export const runSetTimeout = () => testCasePromisifiedMulti('setTimeout', 25000, (cb: () => void) => setTimeout(cb, 0));
-export const runNonBlockingSchedule = () => testCasePromisifiedMulti('non-blocking-schedule', 25000, schedule);
+export const runSetImmediate = () => testCasePromisifiedMulti('setImmediate', 5000, setImmediate);
+export const runSetTimeout = () => testCasePromisifiedMulti('setTimeout', 5000, (cb: () => void) => setTimeout(cb, 0));
+export const runNonBlockingSchedule = () => testCasePromisifiedMulti('non-blocking-schedule', 5000, schedule);

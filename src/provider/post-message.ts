@@ -1,7 +1,7 @@
 import { Callback } from '../types';
-import { ScheduleHelper } from './default';
+import { ScheduleHelperCore } from './core';
 
-export class SchedulePostMessageHelper extends ScheduleHelper {
+export class SchedulePostMessageHelper extends ScheduleHelperCore {
   static isApplicable() {
     return !!globalThis.postMessage && !!globalThis.addEventListener;
   }
