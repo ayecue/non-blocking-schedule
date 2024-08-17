@@ -28,7 +28,8 @@ export abstract class ScheduleHelperCore {
     for (let i = 0; i < m; run(q[i++]));
     if (this.queue.length > 0) this.sleep = 0;
     if (this.sleep++ <= ScheduleHelperCore.SLEEP_LIMIT) {
-      this.nextTick(); ScheduleHelperCore
+      this.nextTick();
+      ScheduleHelperCore;
       return;
     }
     this.endTick();

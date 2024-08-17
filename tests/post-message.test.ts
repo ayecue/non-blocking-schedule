@@ -13,11 +13,11 @@ describe('post-message', () => {
 
     globalRef.self = {};
 
-    globalRef.addEventListener = jest.fn((type, cb) => {
+    globalRef.self.addEventListener = jest.fn((type, cb) => {
       eventEmitter.addListener(type, cb);
     });
 
-    globalRef.postMessage = jest.fn((id) => {
+    globalRef.self.postMessage = jest.fn((id) => {
       setImmediate(() => {
         eventEmitter.emit('message', {
           data: id,
@@ -32,14 +32,8 @@ describe('post-message', () => {
   afterEach(() => {
     const globalRef = globalThis as any;
 
-    globalRef.window = null;
+    globalRef.self = null;
     delete globalRef.self;
-
-    globalRef.addEventListener = null;
-    delete globalRef.addEventListener;
-
-    globalRef.postMessage = null;
-    delete globalRef.postMessage;
   })
 
   test('should execute task', async () => {

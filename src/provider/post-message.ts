@@ -1,9 +1,23 @@
 import { Callback } from '../types';
 import { ScheduleHelperCore } from './core';
 
+const isInWorkerContext = () => {
+  try {
+    return (
+      // @ts-expect-error
+      typeof WorkerGlobalScope !== 'undefined' &&
+      // @ts-expect-error
+      self instanceof WorkerGlobalScope
+    );
+  } catch (err) {}
+  return false;
+};
+
 export class SchedulePostMessageHelper extends ScheduleHelperCore {
   static isApplicable() {
-    return !!globalThis.postMessage && !!globalThis.addEventListener;
+    return (
+      !isInWorkerContext() && !!self.postMessage && !!self.addEventListener
+    );
   }
 
   static createCallback(): (cb: Callback) => void {
@@ -16,7 +30,7 @@ export class SchedulePostMessageHelper extends ScheduleHelperCore {
 
   constructor() {
     super();
-    globalThis.addEventListener('message', this.onMessage.bind(this));
+    self.addEventListener('message', this.onMessage.bind(this));
   }
 
   protected onMessage(event: MessageEvent<any>) {
@@ -30,11 +44,11 @@ export class SchedulePostMessageHelper extends ScheduleHelperCore {
 
   protected startTick(): void {
     this.active = true;
-    globalThis.postMessage(this.id);
+    self.postMessage(this.id);
   }
 
   protected nextTick(): void {
-    globalThis.postMessage(this.id);
+    self.postMessage(this.id);
   }
 
   protected endTick(): void {
