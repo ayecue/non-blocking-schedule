@@ -20,7 +20,7 @@ export class SchedulePostMessageHelper extends ScheduleHelperCore {
   }
 
   protected onMessage(event: MessageEvent<any>) {
-    if (event.source !== window || event.data !== this.id) return;
+    if (event.source !== self || event.data !== this.id) return;
     this.tick();
   }
 

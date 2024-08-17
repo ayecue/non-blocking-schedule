@@ -11,7 +11,7 @@ describe('post-message', () => {
 
     eventEmitter = new EventEmitter();
 
-    globalRef.window = {};
+    globalRef.self = {};
 
     globalRef.addEventListener = jest.fn((type, cb) => {
       eventEmitter.addListener(type, cb);
@@ -21,7 +21,7 @@ describe('post-message', () => {
       setImmediate(() => {
         eventEmitter.emit('message', {
           data: id,
-          source: globalRef.window
+          source: globalRef.self
         });
       });
     });
@@ -33,7 +33,7 @@ describe('post-message', () => {
     const globalRef = globalThis as any;
 
     globalRef.window = null;
-    delete globalRef.window;
+    delete globalRef.self;
 
     globalRef.addEventListener = null;
     delete globalRef.addEventListener;

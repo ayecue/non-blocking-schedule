@@ -1,6 +1,6 @@
 {
   "name": "non-blocking-schedule",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Useful for non blocking scheduling of tasks. Good alternative to setTimeout(cb, 0)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
